@@ -1,0 +1,474 @@
+---
+title: "Show and Tell: R Version"
+author: "Joscelin Rocha Hidalgo <br /> (she, her, hers) <br /> @JoscelinRocha"
+output:
+  xaringan::moon_reader:
+    css: ["style.css", "default"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      beforeInit: "macros.js"
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+
+class: center, middle, inverse, dk-section-title
+
+**Disclaimer: I got too excited and organization quickly stopped being a priority**
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+![:scale 60%](https://media.giphy.com/media/xTiN0CNHgoRf1Ha7CM/giphy.gif)
+
+---
+class: center, middle, inverse, dk-section-title
+
+# Agenda
+
+What can you import?
+
+--
+
+What can you export?
+
+--
+
+Visualization
+
+--
+
+Fun other stuff
+
+--
+
+More resources
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+# What can you import?
+
+---
+
+### CSV (Comma Separated Values) Files
+
+```{r echo = TRUE, eval = FALSE}
+
+# Using base R
+data <- read.csv("file.csv")
+
+# OR
+
+# Using the readr package (part of the tidyverse)
+library(readr)
+data <- read_csv("file.csv")
+
+```
+
+--
+
+### Excel Files
+```{r echo = TRUE, eval = FALSE}
+# Using the readxl package (part of the tidyverse)
+library(readxl)
+
+data <- read_excel("file.xlsx")
+
+```
+
+---
+
+### JSON (JavaScript Object Notation) Files
+
+```{r echo = TRUE, eval = FALSE}
+# Using the jsonlite package
+library(jsonlite)
+
+data <- fromJSON("file.json")
+
+```
+
+--
+
+### XML (eXtensible Markup Language) Files
+
+```{r echo = TRUE, eval = FALSE}
+# Using the XML package
+library(XML)
+
+data <- xmlParse("file.xml")
+
+```
+
+---
+
+### SPSS Files
+
+```{r echo = TRUE, eval = FALSE}
+# Using the haven package (part of the tidyverse)
+library(haven)
+
+data <- read_sav("file.sav")
+
+```
+
+--
+
+### SAS Files
+
+```{r echo = TRUE, eval = FALSE}
+# Using the haven package (part of the tidyverse)
+library(haven)
+
+data <- read_sas("file.sas7bdat")
+
+```
+
+---
+
+### Stata Files
+
+```{r echo = TRUE, eval = FALSE}
+# Using the haven package (part of the tidyverse)
+library(haven)
+
+data <- read_dta("file.dta")
+
+```
+
+--
+
+### SQLite Databases
+
+```{r echo = TRUE, eval = FALSE}
+# Using the DBI and RSQLite packages
+library(DBI)
+library(RSQLite)
+
+con <- dbConnect(RSQLite::SQLite(), "file.db")
+data <- dbGetQuery(con, "SELECT * FROM table_name")
+dbDisconnect(con)
+
+```
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+# What can you export?
+
+---
+
+### You can create slides
+
+.center[
+![](images/make_slides.gif)]
+
+Using ***Quarto*** or ***Xaringan*** (like the one you are looking at right now)
+
+---
+
+## You can make website or blogs
+
+Using ***Quarto***, ***blogdown***, ***hugodown***, or ***distill***
+.pull-left[
+![](images/make_websites.gif)]
+
+.pull-right[
+
+![](images/make_blogs.gif)]
+
+---
+
+## You can make reproducible reports
+
+Using ***Quarto***, ***markdown***
+
+https://www.jhsph.edu/ivac/wp-content/uploads/2019/10/PDPR_2022.pdf
+
+.center[
+![:scale 60%](images/make_reports.png)]
+
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+# Visualization
+
+---
+
+### If you are patient enough, you could make a default graph like this one
+
+.center[
+![:scale 65%](images/visualization_default.png)]
+
+---
+
+
+.center[
+![:scale 85%](images/visualization_patience.gif)]
+
+---
+
+
+.center[![:scale 95%](images/visualization_ggforce.png)]
+
+
+---
+
+### [ggmagnify](https://github.com/hughjonesd/ggmagnify)
+
+Creates a magnified inset of graph. The area can be a rectangle, an ellipse, or any shape.
+
+.center[![:scale 66%](images/visualization_ggmanify.png)]
+
+---
+
+### [ggalluvial](https://pyoflife.com/create-a-ggalluvial-plot-in-r/)
+
+The cowplot package provides various features that help with creating publication-quality figures, such as a set of themes, functions to align plots and arrange them into complex compound figures, and functions that make it easy to annotate plots and or mix plots with images.
+
+.center[![:scale 60%](images/visualization_ggalluvial.png)]
+
+---
+
+### [cowplot](https://wilkelab.org/cowplot/index.html)
+
+.pull-left[The cowplot package provides various features that help with creating publication-quality figures, such as a set of themes, functions to align plots and arrange them into complex compound figures, and functions that make it easy to annotate plots and or mix plots with images.]
+
+.pull-right[![](images/visualization_cowplot.png)]
+
+---
+
+### [esquisse](https://github.com/dreamRs/esquisse)
+
+.pull-left[This addin allows you to interactively explore your data by visualizing it with the ggplot2 package. It allows you to draw bar plots, curves, scatter plots, histograms, boxplot and sf objects, then export the graph or retrieve the code to reproduce the graph..]
+
+.pull-right[![](https://raw.githubusercontent.com/dreamRs/esquisse/master/man/figures/esquisse.gif)]
+
+---
+
+### [colorblindr](https://github.com/clauswilke/colorblindr)
+
+.pull-left[Simulate colorblindness in production-ready R figures. 
+
+This package depends on the development versions of cowplot and colorspace, so you must load those packages first.]
+
+.pull-right[![](images/visualization_blindr.png)]
+
+---
+
+### [colorblindcheck](https://github.com/Nowosad/colorblindcheck)
+
+.pull-left[The colorblindcheck accepts a vector of hexadecimal color descriptions as the input. It can be created using different existing R functions (e.g. rainbow()) or packages (e.g. colorspace, RColorBrewer, rcartocolor, etc.).
+
+ It allows finding which colors are the most or the least similar and to compare the behavior of color palettes for different color vision deficiencies.]
+
+.pull-right[![:scale 130%](images/visualization_colorblindcheck.png)]
+
+---
+
+### [ggsci](https://nanx.me/ggsci/index.html)
+offers a collection of high-quality color palettes inspired by colors used in scientific journals, data visualization libraries, science fiction movies, and TV shows. 
+
+.center[
+![](images/visualization_palettes-the_simpsons.png)
+]
+
+---
+
+### [viridis](https://sjmgarnier.github.io/viridis/articles/intro-to-viridis.html)
+viridis, and its companion package viridisLite provide a series of color maps that are designed to improve graph readability for readers with common forms of color blindness and/or color vision deficiency. The color maps are also perceptually-uniform, both in regular form and also when converted to black-and-white for printing.
+
+.center[
+![](images/visualization_viridis.png)
+]
+
+---
+
+### [trekcolors](https://github.com/leonawicz/trekcolors)
+
+.pull-left[The trekcolors package provides a collection of color palettes based on Star Trek. It also offers functions for custom palettes and scale_* functions for use with ggplot2.]
+
+
+.pull-right[
+![](images/visualization_trekcolors.png)]
+
+---
+
+### [MetBrewer](https://github.com/BlakeRMills/MetBrewer/tree/main)
+Palettes inspired by works at the Metropolitan Museum of Art in New York. Pieces selected come from various time periods, regions, and mediums.
+
+.center[
+![](images/visualization_metbrewer.png)]
+
+
+---
+
+### [PNWColors](https://github.com/jakelawlor/PNWColors)
+
+.pull-left[Four years spent in the most beautiful place in the world, immortalized in an R color palette package.]
+.pull-right[![](images/visualization_pnwcolors.png)]
+
+---
+### National Park Colors
+
+.pull-left[
+nationalparkcolors
+
+![](images/visualization-nationalparkcolors.png)
+
+]
+
+--
+
+.pull-right[
+NatParksPalettes
+
+![](images/visualization-natparkspalettes.png)]
+
+
+---
+
+### [Paletteer](https://github.com/EmilHvitfeldt/paletteer)
+
+The goal of paletteer is to be a comprehensive collection of color palettes in R using a common interface. Think of it as the “caret of palettes”.
+
+.center[
+![](https://raw.githubusercontent.com/EmilHvitfeldt/paletteer/main/man/figures/paletteer-demo.gif)]
+
+---
+### Comprehensive list of color palettes in r by Emil Hvitfedt
+
+The goal of this repository is to have a one stop destination for anyone looking for a color palette to use in r. If you would like to help/contribute please feel free post an issue, PR or send a email to emilhhvitfeldt@gmail.com.
+
+https://github.com/EmilHvitfeldt/r-color-palettes/blob/master/README.md#comprehensive-list-of-color-palettes-in-r
+
+---
+
+### [Coolors](https://coolors.co/)
+
+Online color palette generator.
+
+.center[
+![:scale 80%](images/visualization_coolors.gif)]
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+# Other Fun Stuff
+
+---
+
+### Xenographics: Weird but (sometimes) useful charts
+Xeno.graphics is a collection of unusual charts and maps, managed by Maarten Lambrechts. Its objective is to create a repository of novel, innovative and experimental visualizations to inspire you, to fight xenographphobia and popularize new chart types.
+
+.pull-left[![](images/fun-stuff_xenographic.png)]
+
+.pull-right[![](images/fun-stuff_xenographic2.png)]
+
+---
+
+### Art with R
+Daniel Navarro: https://art-from-code.netlify.app/
+
+.center[![:scale 80%](images/fun-stuff_art.png)]
+
+---
+
+.center[![:scale 80%](images/fun-stuff_art2.png)]
+Chase: https://github.com/will-r-chase/aRt
+
+---
+
+.center[![:scale 62%](images/fun-stuff_art3.png)]
+I make similar maps for gifts
+
+---
+
+.center[![:scale 50%](images/fun-stuff_art4.png)]
+
+---
+
+### The Vitae package
+The vitae package makes creating and maintaining a Résumé or CV with R Markdown simple. It provides a collection of LaTeX and HTML templates, with helpful functions to add content to the documents.
+
+.center[![](images/fun-stuff_vitae.gif)]
+
+---
+
+### grateful: Facilitate citation of R packages
+
+.center[![:scale 60%](images/fun-stuff_grateful.png)]
+
+---
+
+### 2 ways to make code look neater
+
+.pull-left[
+Using the AlignAssign package
+![](images/fun-stuff_aslignassign.gif)]
+
+--
+
+.pull-right[
+Using the styler package 
+![](https://raw.githubusercontent.com/lorenzwalthert/some_raw_data/master/styler_0.1.gif)]
+
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+# Resources
+
+---
+
+### [A Language, Not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
+
+.center[![:scale 70%](images/resources_language-not-letter.png)]
+
+https://ademos.people.uic.edu/index.html
+
+---
+
+### [YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/) by Nathaniel D. Phillips
+
+.center[![:scale 32%](images/resources_yarrr.jpeg)]
+
+https://bookdown.org/ndphillips/YaRrr/
+
+---
+
+### [Creating a blog with Quarto in 10 steps](https://beamilz.com/posts/2022-06-05-creating-a-blog-with-quarto/en/) by Beatriz Milz
+
+.center[![:scale 70%](images/resources_blog-in-ten-steps.png)]
+
+https://beamilz.com/posts/2022-06-05-creating-a-blog-with-quarto/en/
+
+---
+
+### [A guide to working with country-year panel data and Bayesian multilevel models](https://www.andrewheiss.com/blog/2021/12/01/multilevel-models-panel-data-guide/) by Andrew Heiss
+
+.center[![:scale 75%](images/resources_bayesian-multilevel.png)]
+
+https://www.andrewheiss.com/blog/2021/12/01/multilevel-models-panel-data-guide/
+
+---
+
+### [How to perform a Bayesian meta-analysis](https://www.dsquintana.blog/how-to-perform-a-bayesian-meta-analysis-in-r/) by Dan Quintana
+
+.center[![:scale 70%](images/resources_bayesian_meta-analysis.png)]
+
+https://www.dsquintana.blog/how-to-perform-a-bayesian-meta-analysis-in-r/
+
+---
+
+.center[![:scale 100%](images/resources_dan_youtube.png)]
