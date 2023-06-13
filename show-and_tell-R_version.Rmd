@@ -370,9 +370,9 @@ class: center, middle, inverse, dk-section-title
 ### Xenographics: Weird but (sometimes) useful charts
 Xeno.graphics is a collection of unusual charts and maps, managed by Maarten Lambrechts. Its objective is to create a repository of novel, innovative and experimental visualizations to inspire you, to fight xenographphobia and popularize new chart types.
 
-.pull-left[![](images/fun-stuff_xenographic.png)]
+.pull-left[![:scale 80%](images/fun-stuff_xenographic.png)]
 
-.pull-right[![](images/fun-stuff_xenographic2.png)]
+.pull-right[![:scale 80%](images/fun-stuff_xenographic2.png)]
 
 ---
 
@@ -472,3 +472,14 @@ https://www.dsquintana.blog/how-to-perform-a-bayesian-meta-analysis-in-r/
 ---
 
 .center[![:scale 100%](images/resources_dan_youtube.png)]
+
+---
+
+.center[
+![:scale 120%](images/make_websites.gif)]
+
+---
+
+class: center, middle, inverse, dk-section-title
+
+# Thank you!!!
